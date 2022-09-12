@@ -14,12 +14,13 @@ import { MatCardModule} from '@angular/material/card';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatIconModule,
     MatButtonModule,
     MatTabsModule,
     MatCardModule,
-    RouterModule,
-    ListaGamesRoutingModule
+    ListaGamesRoutingModule,
+
   ]
 })
 export class ListaGamesModule { }

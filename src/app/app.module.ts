@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     FooterModule,
     NgbModule,
     HttpClientModule,
-    MatTabsModule
   ],
   providers: [GameService],
   bootstrap: [AppComponent]

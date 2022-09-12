@@ -12,8 +12,8 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  buscarGames(): Observable<any>{
-    return this.http.get<ResponsePageable>(this.url)
+  public getGames(): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>(this.url);
   }
 
 }

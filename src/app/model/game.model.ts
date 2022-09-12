@@ -1,8 +1,9 @@
 export class Game{
-  id: number;
-  nome: string;
-  descricao: string;
-  preco: number;
-  empresa: string;
-  anoLancamento: string;
+  id!: string;
+  nome!: string;
+  descricao!: string;
+  categoria!: string;
+  anoLancamento!: string;
+  empresa!: string;
+  preco!: string;
 }

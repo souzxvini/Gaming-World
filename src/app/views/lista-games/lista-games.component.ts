@@ -9,19 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaGamesComponent implements OnInit {
 
-  gamesList: Game[]
+  gamesList: Game[] = new Array<Game>();
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService) {
+    this.listarGames();
+   }
 
   ngOnInit(): void {
-    this.listarGames()
-    console.log(this.gamesList)
   }
 
   listarGames(){
-    this.gameService.buscarGames().subscribe(r => {
-      this.gamesList = r.content;
-    })
+    this.gameService.getGames().subscribe(data => {
+      this.gamesList = data.content;
+      console.log("aaaaaa")
+      console.log(this.gamesList)
+      });
   }
 
 }
