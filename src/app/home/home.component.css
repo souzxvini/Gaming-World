@@ -1,0 +1,78 @@
+
+body{
+  width: 100%;
+  height: 100%;
+  background-image: url("https://coolhdwall.com/storage/2203/aloy-horizon-forbidden-west-ps5-2k-wallpaper-2560x1440-80.jpg");
+  background-size: cover;
+  background-position: center top;
+  position: fixed;
+}
+
+.titulo{
+  font-size: 4em;
+  color: white;
+  letter-spacing: 5px;
+  text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.7),
+  0px 3px 0px #b2a98f,
+  0px 14px 10px rgba(0,0,0,0.15),
+  0px 15px 2px rgba(0,0,0,0.1),
+  0px 16px 10px rgba(0,0,0,0.1);
+
+  padding-top: 0.7em;
+}
+
+.texto-introducao{
+  color: white;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+  text-shadow: 3px 0px 7px rgba(61, 59, 52, 0.8),
+	  -3px 0px 7px rgba(46, 45, 42, 0.8),
+	  0px 4px 7px rgba(73, 73, 73, 0.8);
+  font-weight: 200;
+}
+
+.box-apresentacao{
+  background-color: rgba(0, 0, 0, 0.432);
+  box-shadow: 0px 0px 20px;
+				width: 100%;
+				position: absolute;
+				top: 45%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				min-height: 200px;
+}
+
+.btn{
+  transition: 0.5s;
+  letter-spacing: 2px;
+}
+
+.btn:hover{
+  letter-spacing: 4px;
+}
+
+@media only screen and (max-width: 600px){
+  .titulo{
+    font-size: 2em;
+    color: white;
+    letter-spacing: 5px;
+    text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.7),
+    0px 3px 0px #b2a98f,
+    0px 14px 10px rgba(0,0,0,0.15),
+    0px 15px 2px rgba(0,0,0,0.1),
+    0px 16px 10px rgba(0,0,0,0.1);
+
+    padding-top: 0.7em;
+  }
+
+  .texto-introducao{
+    color: white;
+    font-size: 1em;
+    letter-spacing: 1px;
+    text-shadow: 3px 0px 7px rgba(61, 59, 52, 0.8),
+      -3px 0px 7px rgba(46, 45, 42, 0.8),
+      0px 4px 7px rgba(73, 73, 73, 0.8);
+    font-weight: 200;
+  }
+}
+
