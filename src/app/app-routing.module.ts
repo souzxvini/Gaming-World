@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: ()=> import('./home/home.module').then((m)=> m.HomeModule)
   },
   {
+    path:'paginaInicial',
+    loadChildren: ()=> import('./views/pagina-inicial/pagina-inicial.module').then((m)=> m.PaginaInicialModule)
+  },
+  {
     path:'games',
     loadChildren: ()=> import('./views/lista-games/lista-games.module').then((m)=> m.ListaGamesModule)
   },

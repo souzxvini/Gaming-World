@@ -1,3 +1,4 @@
+import { PaginaInicialComponent } from './../views/pagina-inicial/pagina-inicial.component';
 import { ListaCategoriasComponent } from './../views/lista-categorias/lista-categorias.component';
 import { ListaGamesComponent } from './../views/lista-games/lista-games.component';
 import { HomeComponent } from './home.component';
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'categorias',
     component: ListaCategoriasComponent
+  },
+  {
+    path: 'pagina-inicial',
+    component: PaginaInicialComponent
   }
 ];
 

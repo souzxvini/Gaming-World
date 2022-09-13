@@ -10,23 +10,22 @@
       <mat-card class="mt-2">
         <div class="row">
           <ng-container *ngFor="let game of gamesList">
-            <div class="col-md-4">
+            <div class="col-6 col-sm-6 col-md-3 col-xl-2 ">
               <div class="card-sl">
                 <div class="card-image">
                   <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
                 </div>
-                  <div class="card-heading">
-                    {{ game.nome }}
-                  </div>
-                  <div class="card-text">
-                    {{ game.descricao }}
-                  </div>
-                  <div class="card-text">
-                      $67,400
-                  </div>
-                    <a href="#" class="card-button"> Purchase</a>
-                  </div>
+                <div class="card-heading text-center">
+                  {{ game.nome }}
                 </div>
+                <div class="card-text text-center">
+                  {{ game.anoLancamento }}
+                </div>
+                <div>
+                  <a class="card-button">Detalhes</a>
+                </div>
+              </div>
+            </div>
           </ng-container>
         </div>
       </mat-card>

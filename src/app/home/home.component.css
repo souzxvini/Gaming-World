@@ -5,6 +5,7 @@ body{
   background-image: url("https://coolhdwall.com/storage/2203/aloy-horizon-forbidden-west-ps5-2k-wallpaper-2560x1440-80.jpg");
   background-size: cover;
   background-position: center top;
+  background-attachment: fixed;
 }
 
 .titulo{
