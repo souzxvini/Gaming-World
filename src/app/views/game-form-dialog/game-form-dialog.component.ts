@@ -33,7 +33,8 @@ export class GameFormDialogComponent implements OnInit {
       nomeCategoria: [null, [Validators.required]],
       preco: [null, [Validators.required]],
       anoLancamento: [null, [Validators.required]],
-      empresa: [null, [Validators.required]]
+      empresa: [null, [Validators.required]],
+      urlImagem: [null, [Validators.required]]
     },
     {
       validators:[usuarioSenhaIguaisValidator]
@@ -56,6 +57,7 @@ export class GameFormDialogComponent implements OnInit {
     game.empresa = this.form.get('empresa').value
     game.anoLancamento = this.form.get('anoLancamento').value
     game.preco = this.form.get('preco').value
+    game.urlImagem = this.form.get('urlImagem').value
 
     this.gameService.postGame(game).subscribe(() => {
       console.log('deu certo')

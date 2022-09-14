@@ -7,4 +7,20 @@ a {
   background-color: rgb(58, 156, 99);
 }
 
+.botao-adicionar:hover{
+  background-color: rgb(48, 126, 80);
+}
+
+.img-responsive{
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  background-size: cover;
+  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 100%;
+  height: fit-content;
+  min-height: 300px !important;
+  max-height: 300px !important;
+  object-fit: cover;
+  object-position: center top;
+}
+
 

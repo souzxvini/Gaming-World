@@ -6,5 +6,6 @@ export class Game{
   anoLancamento!: string;
   empresa!: string;
   preco!: number;
-  nomeCategoria: string
+  nomeCategoria: string;
+  urlImagem: string;
 }
