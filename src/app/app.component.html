@@ -1,2 +1,32 @@
-<app-header></app-header>
+<mat-toolbar class="bg-black text-light justify-content-center" >
+  <div>
+     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>gamepad</mat-icon>
+  </button>
+  <span class="text-uppercase header-title">Gaming World</span>
+  </div>
+</mat-toolbar>
+<div class="bg-black text-light">
+  <div class="container ">
+    <div class="logo-container d-flex justify-content-center text-uppercase">
+      <ul class="nav ">
+        <li class="nav-item p-2">
+          <a [routerLink]="['']">HOME</a>
+        </li>
+
+         <li  class="nav-item p-2">
+          <a [routerLink]="['games']">GAMES</a>
+        </li>
+        <li class="nav-item p-2">
+          <a [routerLink]="['categorias']">CATEGORIES</a>
+        </li>
+         <li class="nav-item p-2">
+          <a>NEWS</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
 <router-outlet></router-outlet>
+

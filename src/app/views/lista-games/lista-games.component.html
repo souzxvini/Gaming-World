@@ -1,36 +1,45 @@
-<body>
-  <div class="container">
-    <div>
-      <mat-card >
-        <button mat-button>GAMES</button>
-        <button mat-button>CATEGORIAS</button>
-      </mat-card>
-    </div>
-    <div>
-      <mat-card class="mt-2">
-        <div class="row">
-          <ng-container *ngFor="let game of gamesList">
-            <div class="col-6 col-sm-6 col-md-3 col-xl-2 ">
-              <div class="card-sl">
-                <div class="card-image">
-                  <img src="https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" />
-                </div>
-                <div class="card-heading text-center">
-                  {{ game.nome }}
-                </div>
-                <div class="card-text text-center">
-                  {{ game.anoLancamento }}
-                </div>
-                <div>
-                  <a class="card-button">Detalhes</a>
-                </div>
+
+    <div class="container">
+    <div class="p-5">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-3 text-light" style="float: left;">
+                <h3>All Games</h3>
+              </div>
+              <div class="mb-3" style="float: right;">
+                <button mat-raised-button (click)="adicionarGame()" class="botao-adicionar"> <mat-icon>add</mat-icon>New Game</button>
               </div>
             </div>
-          </ng-container>
-        </div>
-      </mat-card>
-    </div>
-  </div>
-</body>
+          </div>
+          <div class="row">
+            <ng-container *ngFor="let game of gamesList">
+              <div class="col-6 col-sm-6 col-md-4 col-xl-3 mb-3">
 
+                <mat-card appMaterialElevation>
+                  <mat-card-header>
+                    <mat-card-title>{{ game.nome }}</mat-card-title>
+                    <mat-card-subtitle>{{ game.anoLancamento }}</mat-card-subtitle>
+                  </mat-card-header>
+                  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                  <mat-card-actions align="end">
+                    <button mat-icon-button>
+                        <mat-icon color="primary">mode_edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn">
+                        <mat-icon [swal]="{
+                          title: 'Atenção !!!',
+                          text: 'Deseja realmente excluir o jogo: ' + game.nome + '?',
+                          showDenyButton: true,
+                          denyButtonText: 'Não',
+                          confirmButtonText: 'Sim', icon: 'warning'
+                          }"(confirm)="excluirGame(game.id)">delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+                </mat-card>
+              </div>
+            </ng-container>
+          </div>
+      </div>
+  </div>
+  <app-footer></app-footer>
 

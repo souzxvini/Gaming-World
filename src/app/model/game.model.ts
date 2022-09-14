@@ -1,9 +1,10 @@
 export class Game{
-  id!: string;
+  id!: number;
   nome!: string;
   descricao!: string;
   categoria!: string;
   anoLancamento!: string;
   empresa!: string;
-  preco!: string;
+  preco!: number;
+  nomeCategoria: string
 }

@@ -1,4 +1,8 @@
+import { FooterModule } from './../../componentes/footer/footer.module';
+import { GameFormDialogModule } from './../categoria-form-dialog/categoria-form-dialog.module';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ListaGamesRoutingModule } from './lista-games-routing.module';
+import { HeaderSecundarioModule } from './../../componentes/header-secundario/header-secundario.module';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule} from '@angular/material/card';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -19,8 +24,12 @@ import { MatCardModule} from '@angular/material/card';
     MatButtonModule,
     MatTabsModule,
     MatCardModule,
+    HeaderSecundarioModule,
     ListaGamesRoutingModule,
-
+    MatDialogModule,
+    GameFormDialogModule,
+    SweetAlert2Module.forRoot(),
+    FooterModule
   ]
 })
 export class ListaGamesModule { }
