@@ -23,16 +23,18 @@
                   <img class="img-responsive"  min-width="120" min-height="100" max-height="100" src="{{ game.urlImagem}} " />
                   <mat-card-actions align="end">
                     <button mat-icon-button>
-                        <mat-icon color="primary">mode_edit</mat-icon>
+                        <mat-icon color="primary" (click)="atualizarGame(game.id)">mode_edit</mat-icon>
                     </button>
                     <button mat-icon-button color="warn">
-                        <mat-icon [swal]="{
+                      <!--<mat-icon [swal]="{
                           title: 'Atenção !!!',
                           text: 'Deseja realmente excluir o jogo: ' + game.nome + '?',
                           showDenyButton: true,
                           denyButtonText: 'Não',
                           confirmButtonText: 'Sim', icon: 'warning'
-                          }"(confirm)="excluirGame(game.id)">delete</mat-icon>
+                          }"(confirm)="excluirGame(game)">delete</mat-icon>-->
+
+                          <mat-icon (click)="excluirGame(game)">delete</mat-icon>
                     </button>
                 </mat-card-actions>
                 </mat-card>

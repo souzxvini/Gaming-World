@@ -23,11 +23,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { GameEditFormDialogComponent } from './views/game-edit-form-dialog/game-edit-form-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameFormDialogComponent
+    GameFormDialogComponent,
+    GameEditFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatSelectModule,
     MensagemModule,
-
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

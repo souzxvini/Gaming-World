@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-game-form-dialog',
@@ -60,9 +61,26 @@ export class GameFormDialogComponent implements OnInit {
     game.urlImagem = this.form.get('urlImagem').value
 
     this.gameService.postGame(game).subscribe(() => {
-      console.log('deu certo')
+
       this.dialogRef.close();
       this.form.reset();
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-start',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: game.nome + ' added successfully!'
+      })
     });
   }
 

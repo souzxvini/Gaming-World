@@ -31,4 +31,12 @@ export class GameService {
     return this.http.delete<Game>(`${this.url}/${id}`);
   }
 
+  public getGameDetails(id: any): Observable<Game>{
+    return this.http.get<Game>(`${this.url}/${id}`)
+  }
+
+  public updateGame(game: Game): Observable<Game>{
+    return this.http.put<Game>(`${this.url}/${game.id}`, game,this.httpOptions)
+  }
+
 }
