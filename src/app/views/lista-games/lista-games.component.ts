@@ -1,3 +1,5 @@
+import { map } from 'rxjs';
+import { CategoriaService } from './../../service/game/categoria.service';
 import { ResponsePageable } from './../../model/response-pageable.model';
 import { GameEditFormDialogComponent } from './../game-edit-form-dialog/game-edit-form-dialog.component';
 import { GameFormDialogComponent } from './../game-form-dialog/game-form-dialog.component';
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { PageEvent } from '@angular/material/paginator';
+import { Categoria } from 'src/app/model/categoria.model';
 
 @Component({
   selector: 'app-lista-games',
@@ -16,13 +19,17 @@ import { PageEvent } from '@angular/material/paginator';
 export class ListaGamesComponent implements OnInit {
 
   gamesList: Game[] = new Array<Game>();
+  categoriasList: Categoria[] = new Array<Categoria>();
   totalElements: number = 0
-  pageSize: number = 12;
+  pageSize: number = 3;
   page: number = 0;
-
+  selected= 'ALL'
+  categoriaSelecionada: string;
   constructor(private gameService: GameService,
+    private categoriaService: CategoriaService,
     private dialog: MatDialog) {
     this.listarGames();
+    this.listarCategorias();
    }
 
   ngOnInit(): void {
@@ -33,8 +40,11 @@ export class ListaGamesComponent implements OnInit {
       this.gamesList = data.content;
       this.totalElements = data.totalElements
       this.pageSize = data.size
-      console.log("total elements " + this.page)
+
       });
+
+      this.categoriaSelecionada = 'ALL'
+      console.log('primeira chamda' + this.categoriaSelecionada)
   }
 
   adicionarGame(): void {
@@ -49,7 +59,6 @@ export class ListaGamesComponent implements OnInit {
   }
 
   excluirGame(game: Game): void{
-
       Swal.fire({
         title: 'Are you sure you want to remove ' + game.nome +'?',
         text: "You won't be able to revert this!",
@@ -70,20 +79,21 @@ export class ListaGamesComponent implements OnInit {
           })
         }
       })
-
-    ;
   }
 
   atualizarGame(id: any): void {
     const dialogRef = this.dialog.open(GameEditFormDialogComponent, {
-
      width: '600px'
     });
-
     dialogRef.componentInstance.id = id;
-
     dialogRef.afterClosed().subscribe(result => {
       this.listarGames()
+    })
+  }
+
+  listarCategorias(){
+    this.categoriaService.getCategorias().subscribe(data => {
+      this.categoriasList = data.content;
     })
   }
 
@@ -91,9 +101,42 @@ export class ListaGamesComponent implements OnInit {
     this.page = event.pageIndex
     this.pageSize = event.pageSize
 
-    this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
-      this.gamesList = data.content
-    })
+    if(this.categoriaSelecionada == 'ALL'){
+      this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
+        this.gamesList = data.content
+        this.totalElements = data.totalElements
+      })
+    } else{
+      this.gameService.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize).subscribe(data => {
+        this.gamesList = data.content
+        this.totalElements = data.totalElements
+      }, (error) => {
+        console.log(error)
+      })
+    }
+
   }
 
+  listarGamesPorCategoria(value: any){
+
+    this.page = 0
+
+    if(value.id === undefined){
+      this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
+        this.gamesList = data.content;
+        this.totalElements = data.totalElements
+        this.categoriaSelecionada = 'ALL'
+        console.log("terceira chamada" + this.categoriaSelecionada)
+      })
+    } else{
+        this.categoriaSelecionada = value.nome
+        console.log("segunda chamada" + this.categoriaSelecionada)
+        this.gameService.getGamesByCategory(value.nome, this.page, this.pageSize).subscribe(data => {
+        this.gamesList = data.content
+        this.totalElements = data.totalElements
+      }, (error) => {
+        console.log(error)
+      })
+    }
+  }
 }

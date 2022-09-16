@@ -39,4 +39,7 @@ export class GameService {
     return this.http.put<Game>(`${this.url}/${game.id}`, game,this.httpOptions)
   }
 
+  public getGamesByCategory(category: string, page: any, size: any): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>( `${this.url}/categoria?nomeCategoria=${category}&page=${page}&size=${size}`);
+  }
 }

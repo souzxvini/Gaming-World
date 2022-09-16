@@ -6,8 +6,11 @@
             <mat-card class="mb-3">
                     <mat-form-field class="select-categoria">
                       <mat-label >Category</mat-label>
-                      <mat-select>
-                        <mat-option *ngFor="let categoria of gamesList" [value]="categoria.nome">
+                      <mat-select [(value)]="selected" (valueChange)="listarGamesPorCategoria($event)">
+                        <mat-option  value="ALL">
+                          ALL
+                        </mat-option>
+                        <mat-option *ngFor="let categoria of categoriasList" [value]="categoria">
                           {{categoria.nome}}
                         </mat-option>
                       </mat-select>
@@ -38,6 +41,9 @@
                   </mat-card>
                 </div>
               </ng-container>
+              <div class="texto-vazio text-center" *ngIf="gamesList.length == 0">
+                <p>Sorry, there's no game registered :(</p>
+              </div>
             </div>
         </div>
 

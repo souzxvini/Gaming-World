@@ -73,4 +73,10 @@ a {
   padding-left: 15px;
 }
 
+.texto-vazio{
+  padding: 15px 0px;
+  font-size: 2em;
+  color: white;
+}
+
 
