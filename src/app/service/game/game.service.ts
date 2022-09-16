@@ -19,8 +19,8 @@ export class GameService {
 
   constructor(private http: HttpClient) { }
 
-  public getGames(): Observable<ResponsePageable>{
-    return this.http.get<ResponsePageable>(this.url);
+  public getGames(page: any, size: any): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>( `${this.url}?page=${page}&size=${size}`);
   }
 
   public postGame(game: Game): Observable<Game>{

@@ -1,47 +1,54 @@
 
-    <div class="container">
-    <div class="p-5">
-          <div class="row">
-            <div class="col-12">
-              <div class="mb-3 text-light" style="float: left;">
-                <h3>All Games</h3>
-              </div>
-              <div class="mb-3" style="float: right;">
-                <button mat-raised-button (click)="adicionarGame()" class="botao-adicionar"> <mat-icon>add</mat-icon>New Game</button>
-              </div>
+  <div class="background">
+      <div class="container">
+        <mat-card class="mt-3 mb-5 mat-card-grande">
+          <div>
+            <mat-card class="mb-3">
+                    <mat-form-field class="select-categoria">
+                      <mat-label >Category</mat-label>
+                      <mat-select>
+                        <mat-option *ngFor="let categoria of gamesList" [value]="categoria.nome">
+                          {{categoria.nome}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <button style="float: right;" class=" botao-adicionar" mat-raised-button (click)="adicionarGame()" > <mat-icon>add</mat-icon>New Game</button>
+            </mat-card>
+
+            <div class="row">
+              <ng-container *ngFor="let game of gamesList">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
+                  <mat-card >
+                    <h3 class="card-text-overflow">{{ game.nome }}</h3>
+                    <div>
+                      <p class="subtittle-card" style="float: left;"> {{ game.anoLancamento}} </p>
+                      <span class="example-spacer"></span>
+                      <p class="subtittle-card-price" style="float: right;"> {{ game.preco | currency: 'BRL'}} </p>
+                    </div>
+
+                    <img class="img-responsive"  min-width="120" min-height="100" max-height="100" src="{{ game.urlImagem}} " />
+                    <mat-card-actions align="end">
+                      <button mat-icon-button>
+                          <mat-icon color="primary" (click)="atualizarGame(game.id)">mode_edit</mat-icon>
+                      </button>
+                      <button mat-icon-button color="warn">
+                            <mat-icon (click)="excluirGame(game)">delete</mat-icon>
+                      </button>
+                  </mat-card-actions>
+                  </mat-card>
+                </div>
+              </ng-container>
             </div>
-          </div>
-          <div class="row">
-            <ng-container *ngFor="let game of gamesList">
-              <div class="col-6 col-sm-6 col-md-4 col-xl-3 mb-3">
+        </div>
 
-                <mat-card appMaterialElevation>
-                  <mat-card-header>
-                    <mat-card-title>{{ game.nome }}</mat-card-title>
-                    <mat-card-subtitle>{{ game.anoLancamento }}</mat-card-subtitle>
-                  </mat-card-header>
-                  <img class="img-responsive"  min-width="120" min-height="100" max-height="100" src="{{ game.urlImagem}} " />
-                  <mat-card-actions align="end">
-                    <button mat-icon-button>
-                        <mat-icon color="primary" (click)="atualizarGame(game.id)">mode_edit</mat-icon>
-                    </button>
-                    <button mat-icon-button color="warn">
-                      <!--<mat-icon [swal]="{
-                          title: 'Atenção !!!',
-                          text: 'Deseja realmente excluir o jogo: ' + game.nome + '?',
-                          showDenyButton: true,
-                          denyButtonText: 'Não',
-                          confirmButtonText: 'Sim', icon: 'warning'
-                          }"(confirm)="excluirGame(game)">delete</mat-icon>-->
+        <mat-paginator [length]="totalElements"
+              [pageSize]="pageSize"
+              aria-label="Select page"
+              [pageIndex]="page"
+              (page)="onPaginateChange($event)">
+        </mat-paginator>
+        </mat-card>
+    </div>
 
-                          <mat-icon (click)="excluirGame(game)">delete</mat-icon>
-                    </button>
-                </mat-card-actions>
-                </mat-card>
-              </div>
-            </ng-container>
-          </div>
-      </div>
-  </div>
-  <app-footer></app-footer>
 
+    </div>

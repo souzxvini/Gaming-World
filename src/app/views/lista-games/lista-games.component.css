@@ -2,9 +2,33 @@ a {
   text-decoration: none;
 }
 
+.card-text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 15px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0;
+  background: white;
+}
+
+.subtittle-card{
+  color: rgb(145, 138, 138);
+  margin: 0;
+  padding-left: 15px;
+}
+
+.subtittle-card-price{
+  color: green;
+  margin: 0;
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+
 .botao-adicionar{
-  color: white;
-  background-color: rgb(58, 156, 99);
+  color:white;
+  background-color: rgb(64, 165, 106);
 }
 
 .botao-adicionar:hover{
@@ -20,7 +44,33 @@ a {
   min-height: 300px !important;
   max-height: 300px !important;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
+}
+
+.mat-card-grande{
+  background-image: radial-gradient(circle,
+   #5c1313, #601414, #641515, #681616, #6c1717, #6e1817, #701818, #721918, #731918, #741a19, #751a19, #761a1a);
+
+}
+
+.example-spacer{
+  flex: 1 1 auto;
+}
+
+.card-preco-text{
+  font-size: 1em;
+  padding-right: 15px;
+  letter-spacing: 0.5px;
+  color: rgb(48, 126, 80);
+}
+
+.card-text-overflow{
+  padding-right: 15px;
+  text-overflow: ellipsis;
+}
+
+.select-categoria{
+  padding-left: 15px;
 }
 
 

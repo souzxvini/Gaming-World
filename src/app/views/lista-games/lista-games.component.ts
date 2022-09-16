@@ -1,3 +1,4 @@
+import { ResponsePageable } from './../../model/response-pageable.model';
 import { GameEditFormDialogComponent } from './../game-edit-form-dialog/game-edit-form-dialog.component';
 import { GameFormDialogComponent } from './../game-form-dialog/game-form-dialog.component';
 import { Game } from './../../model/game.model';
@@ -5,6 +6,7 @@ import { GameService } from './../../service/game/game.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-lista-games',
@@ -14,6 +16,9 @@ import Swal from 'sweetalert2';
 export class ListaGamesComponent implements OnInit {
 
   gamesList: Game[] = new Array<Game>();
+  totalElements: number = 0
+  pageSize: number = 12;
+  page: number = 0;
 
   constructor(private gameService: GameService,
     private dialog: MatDialog) {
@@ -24,8 +29,11 @@ export class ListaGamesComponent implements OnInit {
   }
 
   listarGames(){
-    this.gameService.getGames().subscribe(data => {
+    this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
       this.gamesList = data.content;
+      this.totalElements = data.totalElements
+      this.pageSize = data.size
+      console.log("total elements " + this.page)
       });
   }
 
@@ -76,6 +84,15 @@ export class ListaGamesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.listarGames()
+    })
+  }
+
+  onPaginateChange(event: PageEvent) {
+    this.page = event.pageIndex
+    this.pageSize = event.pageSize
+
+    this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
+      this.gamesList = data.content
     })
   }
 

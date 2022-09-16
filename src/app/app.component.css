@@ -1,10 +1,44 @@
-html {
-	height: 100%;
-	min-height: 100%;
+
+a {
+  text-decoration: none;
+}
+.background-header{
+  color: #741d1d;
+  background-image: radial-gradient(circle, #ffffff, #fafafa, #f6f6f6, #f1f1f1, #ededed, #ebebeb, #e9e9e9, #e7e7e7, #e7e7e7, #e6e6e6, #e6e6e6, #e5e5e5);
 }
 
-body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;
+.background-navbar{
+  background-image: radial-gradient(circle, #5c1313, #601414, #641515, #681616, #6c1717, #6e1817, #701818, #721918, #731918, #741a19, #751a19, #761a1a);
 }
+
+.background-navbar{
+  color:white;
+}
+
+.active{
+  background-color: white;
+  letter-spacing: 2px;
+}
+
+.active a{
+  color: #741d1d !important;
+}
+
+.opcao-navbar{
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.opcao-navbar:hover{
+  color: #741d1d !important;
+  letter-spacing: 2px;
+  background-color: rgb(255, 255, 255);
+}
+
+.footer {
+  color: #741d1d;
+  background-color:#ededed;
+	margin-top: auto;
+}
+
+
