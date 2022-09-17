@@ -21,9 +21,9 @@ export class ListaGamesComponent implements OnInit {
   gamesList: Game[] = new Array<Game>();
   categoriasList: Categoria[] = new Array<Categoria>();
   totalElements: number = 0
-  pageSize: number = 3;
+  pageSize: number = 12;
   page: number = 0;
-  selected= 'ALL'
+  selected = 'ALL'
   categoriaSelecionada: string;
   constructor(private gameService: GameService,
     private categoriaService: CategoriaService,
@@ -51,7 +51,7 @@ export class ListaGamesComponent implements OnInit {
      width: '600px'
     });
     dialogRef.afterClosed().subscribe(result => {
-       this.categoriaSelecionada = dialogRef.componentInstance.categoriaSelecionada
+       this.selected = dialogRef.componentInstance.categoriaSelecionada
       this.listarGames()
     })
   }
