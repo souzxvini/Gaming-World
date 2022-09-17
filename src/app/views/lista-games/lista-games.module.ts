@@ -16,6 +16,8 @@ import {MatSelectModule} from '@angular/material/select';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 registerLocaleData(ptBr);
 
 @NgModule({
@@ -36,7 +38,8 @@ registerLocaleData(ptBr);
     SweetAlert2Module.forRoot(),
     FooterModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSlideToggleModule
   ],providers:    [
     // ************************************
     { provide: LOCALE_ID, useValue: 'pt' },
