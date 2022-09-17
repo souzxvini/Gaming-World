@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { PageEvent } from '@angular/material/paginator';
 import { Categoria } from 'src/app/model/categoria.model';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-lista-games',
@@ -43,18 +44,10 @@ export class ListaGamesComponent implements OnInit {
       });
 
       this.categoriaSelecionada = 'ALL'
-      console.log('primeira chamda' + this.categoriaSelecionada)
+      this.selected = 'ALL'
   }
 
-  adicionarGame(): void {
-    const dialogRef = this.dialog.open(GameFormDialogComponent, {
-     width: '600px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-       this.selected = dialogRef.componentInstance.categoriaSelecionada
-      this.listarGames()
-    })
-  }
+
 
   excluirGame(game: Game): void{
       Swal.fire({
@@ -68,7 +61,12 @@ export class ListaGamesComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.gameService.deleteGame(game.id).subscribe(() => {
-            this.listarGames()
+            this.gameService.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize).subscribe(data => {
+              this.gamesList = data.content
+              this.totalElements = data.totalElements
+            }, (error) => {
+              console.log(error)
+            })
              Swal.fire(
             'Deleted!',
             game.nome +' has been deleted.',
@@ -79,13 +77,40 @@ export class ListaGamesComponent implements OnInit {
       })
   }
 
+  adicionarGame(): void {
+    const dialogRef = this.dialog.open(GameFormDialogComponent, {
+     width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+       if(dialogRef.componentInstance.manterLista ){
+
+       }else if(!dialogRef.componentInstance.manterLista){
+        this.listarGames()
+       }
+    })
+  }
+
   atualizarGame(id: any): void {
     const dialogRef = this.dialog.open(GameEditFormDialogComponent, {
      width: '600px'
     });
     dialogRef.componentInstance.id = id;
     dialogRef.afterClosed().subscribe(result => {
-      this.listarGames()
+      if(dialogRef.componentInstance.recarregarLista ){
+        if(this.categoriaSelecionada != 'ALL'){
+          this.gameService.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize).subscribe(data => {
+          this.gamesList = data.content
+          this.totalElements = data.totalElements
+        }, (error) => {
+          console.log(error)
+        })
+        } else if(this.categoriaSelecionada == 'ALL'){
+          this.listarGames()
+        }
+
+      }else if(!dialogRef.componentInstance.recarregarLista){
+
+      }
     })
   }
 

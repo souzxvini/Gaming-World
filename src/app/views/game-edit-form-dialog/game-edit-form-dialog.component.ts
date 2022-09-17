@@ -19,6 +19,7 @@ export class GameEditFormDialogComponent implements OnInit {
   id: number;
   categorias: Categoria[];
   game: Game = new Game();
+  recarregarLista: boolean = true;
 
   constructor(private fb: FormBuilder,
     private gameService: GameService,
@@ -51,6 +52,7 @@ export class GameEditFormDialogComponent implements OnInit {
   }
 
   cancel(): void{
+    this.recarregarLista = false
     this.dialogRef.close();
     this.form.reset();
   }
@@ -96,6 +98,7 @@ export class GameEditFormDialogComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.gameService.updateGame(game).subscribe(() => {
+          this.recarregarLista = true
           this.dialogRef.close();
           Swal.fire(
             'Updated!',
