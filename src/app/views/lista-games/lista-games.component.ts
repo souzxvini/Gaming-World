@@ -40,7 +40,6 @@ export class ListaGamesComponent implements OnInit {
       this.gamesList = data.content;
       this.totalElements = data.totalElements
       this.pageSize = data.size
-
       });
 
       this.categoriaSelecionada = 'ALL'
@@ -51,9 +50,8 @@ export class ListaGamesComponent implements OnInit {
     const dialogRef = this.dialog.open(GameFormDialogComponent, {
      width: '600px'
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('the dialog was closed');
+       this.categoriaSelecionada = dialogRef.componentInstance.categoriaSelecionada
       this.listarGames()
     })
   }
@@ -118,7 +116,6 @@ export class ListaGamesComponent implements OnInit {
   }
 
   listarGamesPorCategoria(value: any){
-
     this.page = 0
 
     if(value.id === undefined){
@@ -126,11 +123,9 @@ export class ListaGamesComponent implements OnInit {
         this.gamesList = data.content;
         this.totalElements = data.totalElements
         this.categoriaSelecionada = 'ALL'
-        console.log("terceira chamada" + this.categoriaSelecionada)
       })
     } else{
         this.categoriaSelecionada = value.nome
-        console.log("segunda chamada" + this.categoriaSelecionada)
         this.gameService.getGamesByCategory(value.nome, this.page, this.pageSize).subscribe(data => {
         this.gamesList = data.content
         this.totalElements = data.totalElements

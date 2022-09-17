@@ -42,7 +42,8 @@
                 </div>
               </ng-container>
               <div class="texto-vazio text-center" *ngIf="gamesList.length == 0">
-                <p>Sorry, there's no game registered :(</p>
+                <p *ngIf="categoriaSelecionada == 'ALL'">Sorry, there's no game registered :(</p>
+                <p *ngIf="categoriaSelecionada != 'ALL'">Sorry, there's no {{ categoriaSelecionada }} 's game registered :(</p>
               </div>
             </div>
         </div>

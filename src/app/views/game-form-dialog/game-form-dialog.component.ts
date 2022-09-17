@@ -18,6 +18,7 @@ export class GameFormDialogComponent implements OnInit {
   public form: FormGroup
 
   categorias: Categoria[];
+  categoriaSelecionada: string;
 
   constructor(
     private fb: FormBuilder,
@@ -62,6 +63,7 @@ export class GameFormDialogComponent implements OnInit {
 
     this.gameService.postGame(game).subscribe(() => {
 
+      this.categoriaSelecionada = 'ALL'
       this.dialogRef.close();
       this.form.reset();
 
