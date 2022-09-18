@@ -17,12 +17,18 @@ import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import { FormsModule } from '@angular/forms';
 registerLocaleData(ptBr);
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { ArrayFiltroPipe } from 'src/pipes/array-filtro.pipe';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
-    ListaGamesComponent
+    ListaGamesComponent,
+    ArrayFiltroPipe
+
   ],
   imports: [
     CommonModule,
@@ -39,7 +45,12 @@ registerLocaleData(ptBr);
     FooterModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    MatFormFieldModule,
+     MatInputModule
+
   ],providers:    [
     // ************************************
     { provide: LOCALE_ID, useValue: 'pt' },

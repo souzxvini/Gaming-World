@@ -26,12 +26,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { GameEditFormDialogComponent } from './views/game-edit-form-dialog/game-edit-form-dialog.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameFormDialogComponent,
-    GameEditFormDialogComponent,
+    GameEditFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +65,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
     MatSelectModule,
     MensagemModule,
     SweetAlert2Module.forRoot(),
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    NgxPaginationModule
+
   ],
   exports:[
   ],

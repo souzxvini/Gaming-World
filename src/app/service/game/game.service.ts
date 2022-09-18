@@ -42,4 +42,12 @@ export class GameService {
   public getGamesByCategory(category: string, page: any, size: any): Observable<ResponsePageable>{
     return this.http.get<ResponsePageable>( `${this.url}/categoria?nomeCategoria=${category}&page=${page}&size=${size}`);
   }
+
+  public getGamesByString(string: string, page: any, size: any): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>( `${this.url}/string?nome=${string}&page=${page}&size=${size}`);
+  }
+
+  public getGamesByStringAndCategory(string: string, category: string, page: any, size: any): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>( `${this.url}/porStringECategoria?nome=${string}&nomeCategoria=${category}&page=${page}&size=${size}`);
+  }
 }
