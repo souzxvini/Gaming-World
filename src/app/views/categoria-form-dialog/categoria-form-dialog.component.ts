@@ -1,7 +1,9 @@
+import { Categoria } from './../../model/categoria.model';
 import { CategoriaService } from './../../service/game/categoria.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categoria-form-dialog',
@@ -11,9 +13,9 @@ import { Component, OnInit } from '@angular/core';
 export class CategoriaFormDialogComponent implements OnInit {
 
   public form!: FormGroup
-  private categoriaService!: CategoriaService
 
-  constructor(
+
+  constructor(private categoriaService: CategoriaService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CategoriaFormDialogComponent>
     ) {
@@ -22,7 +24,7 @@ export class CategoriaFormDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      nome: ['', [Validators.required]]
+      nome: [null, [Validators.required]]
     });
   }
 
@@ -31,12 +33,32 @@ export class CategoriaFormDialogComponent implements OnInit {
     this.form.reset();
   }
 
-  /*adicionarCategoria(){
-      this.categoriaService.postCategoria(this.categoriaForm.value).subscribe(result => {
-      this.dialogRef.close();
-      this.categoriaForm.reset();
-    })
-  }*/
+  adicionarCategoria(){
+      let categoria = new Categoria();
+      categoria.nome = this.form.get('nome').value
+
+      this.categoriaService.postCategoria(categoria).subscribe(() => {
+        this.dialogRef.close();
+        this.form.reset();
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-start',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Category "' + categoria.nome + '" added successfully!'
+        })
+      });
+  }
 
 
 }

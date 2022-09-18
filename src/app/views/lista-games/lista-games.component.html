@@ -23,8 +23,9 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
+                <button style="float: right;" class="botao-adicionar" mat-raised-button (click)="adicionarGame()" > <mat-icon>add</mat-icon>New Game</button>
               </div>
-                    <button style="float: right;" class="botao-adicionar" mat-raised-button (click)="adicionarGame()" > <mat-icon>add</mat-icon>New Game</button>
+
             </mat-card>
 
             <div class="row">
@@ -35,7 +36,8 @@
                     <div>
                       <p class="subtittle-card" style="float: left;"> {{ game.anoLancamento}} </p>
                       <span class="example-spacer"></span>
-                      <p class="subtittle-card-price" style="float: right;"> {{ game.preco | currency: 'BRL'}} </p>
+                      <p *ngIf=" game.preco > 0" class="subtittle-card-price" style="float: right;"> {{ game.preco | currency: 'BRL'}} </p>
+                      <p *ngIf=" game.preco == 0" class="subtittle-card-price" style="float: right;"> R$ Free </p>
                     </div>
 
                     <img class="img-responsive"  min-width="120" min-height="100" max-height="100" src="{{ game.urlImagem}} " />
@@ -65,6 +67,4 @@
         </mat-paginator>
         </mat-card>
     </div>
-
-
     </div>

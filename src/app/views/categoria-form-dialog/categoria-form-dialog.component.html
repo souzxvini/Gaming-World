@@ -1,16 +1,15 @@
 <h1 mat-dialog-title>Adicionar Categoria</h1>
 <div mat-dialog-content>
-  <form class="example-form" [formGroup]="form">
+  <form [formGroup]="form">
     <mat-form-field class="example-full-width">
       <mat-label >Nome da categoria</mat-label>
-      <input matInput formControlName="nome" name="nome">
+      <input matInput formControlName="nome" class="text-uppercase">
     </mat-form-field>
-
   </form>
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
   <span class="example-spacer"></span>
-  <button mat-raised-button color="primary" [disabled]="form.invalid" >Adicionar</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="adicionarCategoria()">Adicionar</button>
 </div>
 
