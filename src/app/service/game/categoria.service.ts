@@ -19,8 +19,12 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  public getCategorias(): Observable<ResponsePageable>{
-    return this.http.get<ResponsePageable>(this.url);
+  public getCategorias(page: number, pageSize: number): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>(`${this.url}?page=${page}&size=${pageSize}`);
+  }
+
+  public getCategoriasNoPagination(): Observable<any>{
+    return this.http.get<any>(this.url);
   }
 
   public postCategoria(categoria: Categoria): Observable<Categoria>{
@@ -29,5 +33,22 @@ export class CategoriaService {
 
   public deleteCategoria(id: any): Observable<any>{
     return this.http.delete<Categoria>(`${this.url}/${id}`);
+  }
+
+  public getCategoriaDetails(id: any): Observable<Categoria>{
+    return this.http.get<Categoria>(`${this.url}/${id}`)
+  }
+
+  public updateCategoria(categoria: Categoria): Observable<Categoria>{
+    return this.http.put<Categoria>(`${this.url}/${categoria.id}`, categoria, this.httpOptions)
+  }
+
+  public getCategoriasByString(string: string, page: any, size: any): Observable<ResponsePageable>{
+    return this.http.get<ResponsePageable>( `${this.url}/string?nome=${string}&page=${page}&size=${size}`);
+  }
+
+  public verifyExistentCategory(nomeCategoria: string): Observable<ResponsePageable>{
+    var nome = nomeCategoria.toUpperCase();
+    return this.http.get<ResponsePageable>( `${this.url}/exists?nomeCategoria=${nome}`);
   }
 }

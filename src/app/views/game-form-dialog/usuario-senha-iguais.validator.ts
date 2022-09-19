@@ -4,7 +4,7 @@ export function usuarioSenhaIguaisValidator(form: FormGroup){
   const password = form.get('empresa')?.value ?? '';
 
   if(userName.trim() + password.trim()){
-    return userName != password ? null:{senhaIgualUsuario: true}
+    return userName != password ? null:{nomeJogoIgualNomeEmpresa: true}
   } else {
     return null;
   }

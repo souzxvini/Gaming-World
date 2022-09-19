@@ -3,3 +3,12 @@
    #5c1313, #601414, #641515, #681616, #6c1717, #6e1817, #701818, #721918, #731918, #741a19, #751a19, #761a1a);
 
 }
+
+.botao-adicionar{
+  color:white;
+  background-color: rgb(64, 165, 106);
+}
+
+.botao-adicionar:hover{
+  background-color: rgb(48, 126, 80);
+}

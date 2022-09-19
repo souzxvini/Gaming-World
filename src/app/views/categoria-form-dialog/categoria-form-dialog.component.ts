@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { CategoriaExistsValidationService } from 'src/app/service/game/categoria-exists-validation.service';
 
 @Component({
   selector: 'app-categoria-form-dialog',
@@ -16,6 +17,7 @@ export class CategoriaFormDialogComponent implements OnInit {
 
 
   constructor(private categoriaService: CategoriaService,
+    private categoryExistsValidationService: CategoriaExistsValidationService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CategoriaFormDialogComponent>
     ) {
@@ -24,7 +26,7 @@ export class CategoriaFormDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      nome: [null, [Validators.required]]
+      nome: [null, [Validators.required], [this.categoryExistsValidationService.categoryExists()] ]
     });
   }
 

@@ -45,7 +45,6 @@ a {
   height: fit-content;
   min-height: 300px !important;
   max-height: 300px !important;
-  object-fit: cover;
   object-position: center center;
 }
 
@@ -80,5 +79,41 @@ a {
   font-size: 2em;
   color: white;
 }
+
+.card-jogos{
+  transition: 0.3s ease-out;
+}
+
+.card-jogos:hover {
+  background-color: #57140b;
+  box-shadow: 0px 0px 20px #570a0a;
+}
+
+.card-jogos .card-text-overflow{
+  background-color: white;
+  transition: 0.3s ease-out;
+}
+
+.card-jogos:hover .card-text-overflow{
+  color: white;
+  background-color: #57140b;
+}
+.card-jogos .subtittle-card-price {
+  transition: 0.3s ease-out;
+}
+
+.card-jogos:hover .subtittle-card-price {
+  color: rgb(0, 197, 16);
+}
+
+.card-jogos img{
+  transition: 0.3s ease-out;
+}
+
+.card-jogos:hover img {
+  cursor: pointer;
+  filter: brightness(1.3);
+}
+
 
 

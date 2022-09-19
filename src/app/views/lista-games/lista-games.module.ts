@@ -1,5 +1,4 @@
 import { FooterModule } from './../../componentes/footer/footer.module';
-import { GameFormDialogModule } from './../categoria-form-dialog/categoria-form-dialog.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ListaGamesRoutingModule } from './lista-games-routing.module';
 import { HeaderSecundarioModule } from './../../componentes/header-secundario/header-secundario.module';
@@ -40,7 +39,6 @@ import { MatInputModule } from '@angular/material/input';
     HeaderSecundarioModule,
     ListaGamesRoutingModule,
     MatDialogModule,
-    GameFormDialogModule,
     SweetAlert2Module.forRoot(),
     FooterModule,
     MatSelectModule,

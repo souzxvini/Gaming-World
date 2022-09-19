@@ -1,3 +1,5 @@
+import { CategoriaEditFormDialogComponent } from './views/categoria-edit-form-dialog/categoria-edit-form-dialog.component';
+import { CategoriaFormDialogComponent } from './views/categoria-form-dialog/categoria-form-dialog.component';
 import { MensagemModule } from './componentes/mensagem/mensagem.module';
 import { GameFormDialogComponent } from './views/game-form-dialog/game-form-dialog.component';
 import { HeaderSecundarioModule } from './componentes/header-secundario/header-secundario.module';
@@ -32,7 +34,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     AppComponent,
     GameFormDialogComponent,
-    GameEditFormDialogComponent
+    GameEditFormDialogComponent,
+    CategoriaFormDialogComponent,
+    CategoriaEditFormDialogComponent
   ],
   imports: [
     BrowserModule,

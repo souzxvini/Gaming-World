@@ -20,7 +20,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FooterModule } from 'src/app/componentes/footer/footer.module';
-import { GameFormDialogModule } from '../categoria-form-dialog/categoria-form-dialog.module';
 @NgModule({
   declarations: [
     ListaCategoriasComponent
@@ -33,7 +32,6 @@ import { GameFormDialogModule } from '../categoria-form-dialog/categoria-form-di
     MatTabsModule,
     MatCardModule,
     MatDialogModule,
-    GameFormDialogModule,
     SweetAlert2Module.forRoot(),
     FooterModule,
     MatSelectModule,

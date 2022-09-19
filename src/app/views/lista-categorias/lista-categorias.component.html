@@ -7,7 +7,7 @@
             <div>
               <mat-form-field>
               <mat-label><mat-icon>search</mat-icon>Search By Name </mat-label>
-                <input class="text-uppercase" matInput type="text" [(ngModel)]="searchInputText" (keyup)="getCategoriasByString($event)" >
+                <input class="text-uppercase" matInput type="text" [(ngModel)]="searchInputText" (keyup)="forEachTypedCharacter($event)" >
                 <button *ngIf="searchInputText" matSuffix mat-icon-button aria-label="Clear" (click)="limparFiltro()">
                   <mat-icon>close</mat-icon>
                 </button>

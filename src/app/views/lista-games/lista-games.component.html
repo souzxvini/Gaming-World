@@ -7,7 +7,7 @@
               <div>
                 <mat-form-field>
                 <mat-label><mat-icon>search</mat-icon>Search By Name </mat-label>
-                  <input class="text-uppercase" matInput type="text" [(ngModel)]="searchInputText" (keyup)="getGamesByString($event)" >
+                  <input class="text-uppercase" matInput type="text" [(ngModel)]="searchInputText" (keyup)="forEachTypedCharacter($event)" >
                   <button *ngIf="searchInputText" matSuffix mat-icon-button aria-label="Clear" (click)="limparFiltro()">
                     <mat-icon>close</mat-icon>
                   </button>
@@ -30,8 +30,8 @@
 
             <div class="row">
               <ng-container *ngFor="let game of gamesList">
-                <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
-                  <mat-card >
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3 ">
+                  <mat-card class="card-jogos">
                     <h3 class="card-text-overflow">{{ game.nome }}</h3>
                     <div>
                       <p class="subtittle-card" style="float: left;"> {{ game.anoLancamento}} </p>
@@ -40,7 +40,7 @@
                       <p *ngIf=" game.preco == 0" class="subtittle-card-price" style="float: right;"> R$ Free </p>
                     </div>
 
-                    <img class="img-responsive"  min-width="120" min-height="100" max-height="100" src="{{ game.urlImagem}} " />
+                    <img class="img-responsive"  min-width="120" min-height="100" max-height="100" src="{{ game.urlImagem}}" (click)="seeGameDetails()" />
                     <mat-card-actions align="end">
                       <button mat-icon-button>
                           <mat-icon color="primary" (click)="atualizarGame(game.id)">mode_edit</mat-icon>

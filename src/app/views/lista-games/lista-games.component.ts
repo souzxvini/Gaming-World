@@ -20,7 +20,7 @@ export class ListaGamesComponent implements OnInit {
   gamesList: Game[] = new Array<Game>();
   categoriasList: Categoria[] = new Array<Categoria>();
   totalElements: number = 0
-  pageSize: number = 12;
+  pageSize: number = 24;
   page: number = 0;
   selected = 'ALL'
   categoriaSelecionada: string;
@@ -30,22 +30,50 @@ export class ListaGamesComponent implements OnInit {
   constructor(private gameService: GameService,
     private categoriaService: CategoriaService,
     private dialog: MatDialog) {
-    this.listarGames();
-    this.listarCategorias();
+    this.getGames();
+    this.getCategories();
    }
 
   ngOnInit(): void {
   }
 
-  listarGames(){
+  getGames(){
     this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
       this.gamesList = data.content;
       this.totalElements = data.totalElements
       this.pageSize = data.size
       });
-
       this.categoriaSelecionada = 'ALL'
       this.selected = 'ALL'
+  }
+
+  getCategories(){
+    this.categoriaService.getCategoriasNoPagination().subscribe(data => {
+      this.categoriasList = data.content;
+    })
+  }
+
+  getGamesByCategory(nomeCategoria: string, page: number, pageSize: number){
+    this.gameService.getGamesByCategory(nomeCategoria, page, pageSize).subscribe(data => {
+      this.gamesList = data.content
+      this.totalElements = data.totalElements
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  getGamesByString(string: string, page: number, pageSize: number){
+    this.gameService.getGamesByString(string, page, pageSize).subscribe(data => {
+      this.gamesList = data.content
+      this.totalElements = data.totalElements
+    })
+  }
+
+  getGamesByStringAndCategory(string: string, categoriaSelecionada: string, page: number, pageSize: number){
+    this.gameService.getGamesByStringAndCategory(string, categoriaSelecionada, page, pageSize).subscribe( data => {
+      this.gamesList = data.content
+      this.totalElements = data.totalElements
+    })
   }
 
   excluirGame(game: Game): void{
@@ -54,23 +82,16 @@ export class ListaGamesComponent implements OnInit {
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
           this.gameService.deleteGame(game.id).subscribe(() => {
             if(this.categoriaSelecionada == 'ALL'){
-              this.listarGames()
+              this.getGames()
             }else{
-               this.gameService.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize).subscribe(data => {
-              this.gamesList = data.content
-              this.totalElements = data.totalElements
-            }, (error) => {
-              console.log(error)
-            })
+              this.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize);
             }
-
              Swal.fire(
             'Deleted!',
             game.nome +' has been deleted.',
@@ -87,9 +108,9 @@ export class ListaGamesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
        if(dialogRef.componentInstance.manterLista ){
-
+        return
        }else if(!dialogRef.componentInstance.manterLista){
-        this.listarGames()
+        this.getGames()
        }
     })
   }
@@ -102,25 +123,13 @@ export class ListaGamesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(dialogRef.componentInstance.recarregarLista ){
         if(this.categoriaSelecionada != 'ALL'){
-          this.gameService.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize).subscribe(data => {
-          this.gamesList = data.content
-          this.totalElements = data.totalElements
-        }, (error) => {
-          console.log(error)
-        })
+          this.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize);
         } else if(this.categoriaSelecionada == 'ALL'){
-          this.listarGames()
+          this.getGames()
         }
-
-      }else if(!dialogRef.componentInstance.recarregarLista){
-
+      } else if(!dialogRef.componentInstance.recarregarLista){
+        return
       }
-    })
-  }
-
-  listarCategorias(){
-    this.categoriaService.getCategorias().subscribe(data => {
-      this.categoriasList = data.content;
     })
   }
 
@@ -129,57 +138,36 @@ export class ListaGamesComponent implements OnInit {
     this.pageSize = event.pageSize
 
     if(this.categoriaSelecionada == 'ALL'){
-      this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      })
+      this.getGamesByString(this.searchInputText , this.page, this.pageSize);
     } else{
-      this.gameService.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize).subscribe(data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      }, (error) => {
-        console.log(error)
-      })
-    }
-
-  }
-
-  listarGamesPorCategoria(value: any){
-    this.page = 0
-    this.searchInputText = ''
-    if(value.id === undefined){
-      this.gameService.getGames(this.page, this.pageSize).subscribe(data => {
-        this.gamesList = data.content;
-        this.totalElements = data.totalElements
-        this.categoriaSelecionada = 'ALL'
-      })
-    } else{
-        this.categoriaSelecionada = value.nome
-        this.gameService.getGamesByCategory(value.nome, this.page, this.pageSize).subscribe(data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      }, (error) => {
-        console.log(error)
-      })
+      this.getGamesByStringAndCategory(this.searchInputText, this.categoriaSelecionada, this.page, this.pageSize);
     }
   }
 
-  getGamesByString(e?: Event){
+  forEachTypedCharacter(e?: Event){
     this.page = 0
     const target = e.target as HTMLInputElement;
     const value = target.value
     console.log(value)
 
     if(this.categoriaSelecionada == 'ALL'){
-      this.gameService.getGamesByString(value, this.page, this.pageSize).subscribe(data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      })
+      this.getGamesByString(value, this.page, this.pageSize);
     } else{
-      this.gameService.getGamesByStringAndCategory(value, this.categoriaSelecionada, this.page, this.pageSize).subscribe( data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      })
+      this.getGamesByStringAndCategory(value, this.categoriaSelecionada, this.page, this.pageSize);
+    }
+  }
+
+
+
+  listarGamesPorCategoria(value: any){
+    this.page = 0
+    this.searchInputText = ''
+    if(value.id === undefined){
+      this.getGames();
+      this.categoriaSelecionada = 'ALL'
+    } else{
+      this.categoriaSelecionada = value.nome
+      this.getGamesByCategory(this.categoriaSelecionada, this.page, this.pageSize)
     }
   }
 
@@ -188,15 +176,13 @@ export class ListaGamesComponent implements OnInit {
     this.page = 0
 
     if(this.categoriaSelecionada == 'ALL'){
-      this.gameService.getGamesByString(this.searchInputText , this.page, this.pageSize).subscribe(data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      })
+      this.getGamesByString(this.searchInputText, this.page, this.pageSize);
     } else{
-      this.gameService.getGamesByStringAndCategory(this.searchInputText , this.categoriaSelecionada, this.page, this.pageSize).subscribe( data => {
-        this.gamesList = data.content
-        this.totalElements = data.totalElements
-      })
+      this.getGamesByStringAndCategory(this.searchInputText, this.categoriaSelecionada, this.page, this.pageSize)
     }
+  }
+
+  seeGameDetails(){
+    console.log("briru")
   }
 }

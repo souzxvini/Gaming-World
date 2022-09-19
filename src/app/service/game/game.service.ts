@@ -23,6 +23,10 @@ export class GameService {
     return this.http.get<ResponsePageable>( `${this.url}?page=${page}&size=${size}`);
   }
 
+  public getGamesWithNoPagination(): Observable<any>{
+    return this.http.get<any>( `${this.url}/noPagination`);
+  }
+
   public postGame(game: Game): Observable<Game>{
     return this.http.post<Game>(this.url, game, this.httpOptions)
   }
@@ -50,4 +54,16 @@ export class GameService {
   public getGamesByStringAndCategory(string: string, category: string, page: any, size: any): Observable<ResponsePageable>{
     return this.http.get<ResponsePageable>( `${this.url}/porStringECategoria?nome=${string}&nomeCategoria=${category}&page=${page}&size=${size}`);
   }
+
+  public verifyExistentGame(nome: string): Observable<ResponsePageable>{
+    var nomeJogo = nome.toUpperCase();
+    return this.http.get<ResponsePageable>( `${this.url}/exists?nome=${nomeJogo}`);
+  }
+
+  public verifyExistentGameEditForm(id: number, nome: string): Observable<ResponsePageable>{
+    var nomeJogo = nome.toUpperCase();
+    return this.http.get<ResponsePageable>( `${this.url}/${id}/edit/exists?nome=${nomeJogo}`);
+  }
+
+
 }

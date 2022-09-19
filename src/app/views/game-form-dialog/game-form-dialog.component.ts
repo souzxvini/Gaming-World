@@ -1,3 +1,4 @@
+import { GameExistsValidationService } from './../../service/game/game-exists-validation.service';
 import { Game } from './../../model/game.model';
 import { Categoria } from './../../model/categoria.model';
 import { CategoriaService } from './../../service/game/categoria.service';
@@ -24,6 +25,7 @@ export class GameFormDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private gameService: GameService,
+    private gameExistsValidationService: GameExistsValidationService,
     public dialogRef: MatDialogRef<GameFormDialogComponent>,
     private categoriaService: CategoriaService
 
@@ -31,7 +33,7 @@ export class GameFormDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      nome: [null, [Validators.required]],
+      nome: [null, [Validators.required], [this.gameExistsValidationService.gameExists()]],
       descricao: [null, [Validators.required]],
       nomeCategoria: [null, [Validators.required]],
       preco: [null, [Validators.required]],
@@ -63,34 +65,45 @@ export class GameFormDialogComponent implements OnInit {
     game.preco = this.form.get('preco').value
     game.urlImagem = this.form.get('urlImagem').value
 
-    this.gameService.postGame(game).subscribe(() => {
+    Swal.fire({
+      title: 'Are you sure you want to add "' + game.nome +'"?',
+      text: "You won't be able to change this game's name later, only the others informations!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, add it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.gameService.postGame(game).subscribe(() => {
 
-      this.categoriaSelecionada = 'ALL'
-      this.manterLista = false
-      this.dialogRef.close();
-      this.form.reset();
+          this.categoriaSelecionada = 'ALL'
+          this.manterLista = false
+          this.dialogRef.close();
+          this.form.reset();
 
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-start',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'success',
-        title: game.nome + ' added successfully!'
-      })
-    });
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'success',
+            title: game.nome + ' added successfully!'
+          })
+        });
+      }
+    })
   }
 
   getCategorias(){
-    this.categoriaService.getCategorias().subscribe(data => {
+    this.categoriaService.getCategoriasNoPagination().subscribe(data => {
       this.categorias = data.content;
     })
   }

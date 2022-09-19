@@ -38,6 +38,8 @@ export class GameEditFormDialogComponent implements OnInit {
       {
         validators:[usuarioSenhaIguaisValidator]
       })
+
+      this.form.get('nome').disable()
     }
 
   ngOnInit(): void {
@@ -46,7 +48,7 @@ export class GameEditFormDialogComponent implements OnInit {
   }
 
   getCategorias(){
-    this.categoriaService.getCategorias().subscribe(data => {
+    this.categoriaService.getCategoriasNoPagination().subscribe(data => {
       this.categorias = data.content;
     })
   }
