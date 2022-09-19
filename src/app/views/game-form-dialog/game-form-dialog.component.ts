@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { usuarioSenhaIguaisValidator } from './usuario-senha-iguais.validator';
 import Swal from 'sweetalert2';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-game-form-dialog',
@@ -23,6 +24,7 @@ export class GameFormDialogComponent implements OnInit {
   manterLista: boolean = true;
 
   constructor(
+    private currencyPipe: CurrencyPipe,
     private fb: FormBuilder,
     private gameService: GameService,
     private gameExistsValidationService: GameExistsValidationService,
@@ -44,8 +46,15 @@ export class GameFormDialogComponent implements OnInit {
     {
       validators:[usuarioSenhaIguaisValidator]
     })
-
     this.getCategorias();
+
+    this.form.valueChanges.subscribe( form => {
+      if(form.preco){
+        this.form.patchValue({
+          preco: this.currencyPipe.transform('BRL')
+        }, {emitEvent: false});
+      }
+    })
   }
 
   cancel(): void{

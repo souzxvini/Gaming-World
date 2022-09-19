@@ -1,3 +1,4 @@
+import { GameDetailsDialogComponent } from './../game-details-dialog/game-details-dialog.component';
 import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 import { CategoriaService } from './../../service/game/categoria.service';
 import { GameEditFormDialogComponent } from './../game-edit-form-dialog/game-edit-form-dialog.component';
@@ -30,11 +31,12 @@ export class ListaGamesComponent implements OnInit {
   constructor(private gameService: GameService,
     private categoriaService: CategoriaService,
     private dialog: MatDialog) {
-    this.getGames();
-    this.getCategories();
+
    }
 
   ngOnInit(): void {
+    this.getGames();
+    this.getCategories();
   }
 
   getGames(){
@@ -182,7 +184,14 @@ export class ListaGamesComponent implements OnInit {
     }
   }
 
-  seeGameDetails(){
-    console.log("briru")
+  seeGameDetails(id: number){
+    const dialogRef = this.dialog.open(GameDetailsDialogComponent, {
+      width: '700px',
+      height: '690px'
+     });
+     dialogRef.componentInstance.id = id;
+     dialogRef.afterClosed().subscribe(result => {
+
+     })
   }
 }

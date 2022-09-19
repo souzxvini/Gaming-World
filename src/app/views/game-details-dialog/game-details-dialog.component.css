@@ -1,0 +1,28 @@
+.descricao-text{
+  padding-left: 15px;
+  font-size:1.4em;
+}
+
+
+.img-responsive{
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  background-size: cover;
+  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 100%;
+  height: fit-content;
+  min-height: 500px !important;
+  max-height: 500px !important;
+  object-position: center center;
+}
+
+.example-form{
+  width: 100%;
+}
+
+.example-full-width{
+  width: 100%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

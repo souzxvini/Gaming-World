@@ -1,3 +1,4 @@
+import { GameDetailsDialogComponent } from './views/game-details-dialog/game-details-dialog.component';
 import { CategoriaEditFormDialogComponent } from './views/categoria-edit-form-dialog/categoria-edit-form-dialog.component';
 import { CategoriaFormDialogComponent } from './views/categoria-form-dialog/categoria-form-dialog.component';
 import { MensagemModule } from './componentes/mensagem/mensagem.module';
@@ -29,6 +30,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { GameEditFormDialogComponent } from './views/game-edit-form-dialog/game-edit-form-dialog.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     GameFormDialogComponent,
     GameEditFormDialogComponent,
     CategoriaFormDialogComponent,
-    CategoriaEditFormDialogComponent
+    CategoriaEditFormDialogComponent,
+    GameDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   exports:[
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
