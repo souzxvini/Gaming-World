@@ -8,5 +8,6 @@ export class Game{
   preco!: number;
   nomeCategoria: string;
   urlImagem: string;
-  categoria: Categoria
+  categoria: Categoria;
+  file: File
 }

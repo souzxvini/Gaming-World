@@ -1,7 +1,7 @@
 
 <h1 mat-dialog-title>Adicionar Novo Game</h1>
 <div mat-dialog-content>
-  <form [formGroup]="form">
+  <form [formGroup]="form" enctype="application/x-www-form-urlencoded">
     <app-mensagem
       *ngIf="form.errors?.['nomeJogoIgualNomeEmpresa']"
       mensagem="O nome do jogo não pode ser igual ao nome da empresa! ">
@@ -52,6 +52,9 @@
       <input matInput formControlName="urlImagem" >
     </mat-form-field>
 
+    <div class="form-group">
+      <input type="file" (change)="onFileChange($event)" multiple>
+  </div>
   </form>
 </div>
 <div mat-dialog-actions>

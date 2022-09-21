@@ -19,6 +19,7 @@ export class GameFormDialogComponent implements OnInit {
 
   public form: FormGroup
 
+  selectedFile: File;
   categorias: Categoria[];
   categoriaSelecionada: string;
   manterLista: boolean = true;
@@ -41,7 +42,7 @@ export class GameFormDialogComponent implements OnInit {
       preco: [null, [Validators.required]],
       anoLancamento: [null, [Validators.required]],
       empresa: [null, [Validators.required]],
-      urlImagem: [null, [Validators.required]]
+      urlImagem: [null, [Validators.required]],
     },
     {
       validators:[usuarioSenhaIguaisValidator]
@@ -84,7 +85,7 @@ export class GameFormDialogComponent implements OnInit {
       confirmButtonText: 'Yes, add it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.gameService.postGame(game).subscribe(() => {
+        this.gameService.postGame(game, this.selectedFile).subscribe(() => {
 
           this.categoriaSelecionada = 'ALL'
           this.manterLista = false
@@ -115,6 +116,14 @@ export class GameFormDialogComponent implements OnInit {
     this.categoriaService.getCategoriasNoPagination().subscribe(data => {
       this.categorias = data.content;
     })
+  }
+
+  onFileChange(event) {
+    console.log(event + "uhcnweuibvuirenvbiorqenb0oqnbnironb0qenbuq9n")
+    this.selectedFile = event.target.files[0];
+    console.log("werbwerhn5nmyetkmu6kmyurnreqberwnth  qe" + this.selectedFile.name)
+    console.log("werbwerhn5nmyetkmu6kmyurnreqberwnth  qe" + this.selectedFile.type)
+    console.log("werbwerhn5nmyetkmu6kmyurnreqberwnth  qe" + this.selectedFile.size)
   }
 
 }

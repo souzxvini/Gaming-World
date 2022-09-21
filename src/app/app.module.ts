@@ -39,7 +39,7 @@ import { CurrencyPipe } from '@angular/common';
     GameEditFormDialogComponent,
     CategoriaFormDialogComponent,
     CategoriaEditFormDialogComponent,
-    GameDetailsDialogComponent
+    GameDetailsDialogComponent,
   ],
   imports: [
     BrowserModule,
