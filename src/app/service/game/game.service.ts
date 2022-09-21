@@ -13,8 +13,7 @@ export class GameService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':'multipart/form-data'
-
+      'Content-Type': 'application/json'
     })
   };
 
@@ -28,11 +27,8 @@ export class GameService {
     return this.http.get<any>( `${this.url}/noPagination`);
   }
 
-  public postGame(game: Game, file: File): Observable<Game>{
-    const formData: FormData = new FormData();
-
-    formData.append('image', file, file.name);
-    return this.http.post<Game>(`${this.url}?imageFile=${formData}`, game, this.httpOptions)
+  public postGame(game: Game): Observable<Game>{
+    return this.http.post<Game>(this.url, game, this.httpOptions)
   }
 
   public deleteGame(id: any): Observable<any>{

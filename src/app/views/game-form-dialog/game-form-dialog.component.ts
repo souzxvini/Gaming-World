@@ -19,7 +19,7 @@ export class GameFormDialogComponent implements OnInit {
 
   public form: FormGroup
 
-  selectedFile: File;
+
   categorias: Categoria[];
   categoriaSelecionada: string;
   manterLista: boolean = true;
@@ -85,7 +85,7 @@ export class GameFormDialogComponent implements OnInit {
       confirmButtonText: 'Yes, add it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.gameService.postGame(game, this.selectedFile).subscribe(() => {
+        this.gameService.postGame(game).subscribe(() => {
 
           this.categoriaSelecionada = 'ALL'
           this.manterLista = false
@@ -118,12 +118,6 @@ export class GameFormDialogComponent implements OnInit {
     })
   }
 
-  onFileChange(event) {
-    console.log(event + "uhcnweuibvuirenvbiorqenb0oqnbnironb0qenbuq9n")
-    this.selectedFile = event.target.files[0];
-    console.log("werbwerhn5nmyetkmu6kmyurnreqberwnth  qe" + this.selectedFile.name)
-    console.log("werbwerhn5nmyetkmu6kmyurnreqberwnth  qe" + this.selectedFile.type)
-    console.log("werbwerhn5nmyetkmu6kmyurnreqberwnth  qe" + this.selectedFile.size)
-  }
+
 
 }
