@@ -51,4 +51,9 @@ export class CategoriaService {
     var nome = nomeCategoria.toUpperCase();
     return this.http.get<ResponsePageable>( `${this.url}/exists?nomeCategoria=${nome}`);
   }
+
+  public verifyExistentCategoryEditForm(id: number, nome: string): Observable<ResponsePageable>{
+    var nomeCategoria = nome.toUpperCase();
+    return this.http.get<ResponsePageable>( `${this.url}/edit/exists?nome=${nomeCategoria}&id=${id}`);
+  }
 }

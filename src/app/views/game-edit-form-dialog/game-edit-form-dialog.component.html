@@ -1,6 +1,11 @@
 <h1 mat-dialog-title>Edit Game</h1>
 <div mat-dialog-content>
   <form  [formGroup]="form">
+
+    <app-mensagem
+    *ngIf="form.get('nome')?.errors?.['existentGame']"
+    mensagem="This game already exists!"
+    ></app-mensagem>
     <mat-form-field class="example-full-width">
       <mat-label >Nome</mat-label>
       <input matInput formControlName="nome" class="text-uppercase" oninput="this.value = this.value.toUpperCase()" >

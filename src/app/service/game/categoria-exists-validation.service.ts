@@ -21,18 +21,34 @@ export class CategoriaExistsValidationService {
   constructor(private http: HttpClient,
     private categoriaService: CategoriaService) { }
 
-  categoryExists(){
-    return (control: AbstractControl) => {
-      return control.valueChanges.pipe(
-        switchMap((categoryName) =>
-          this.categoriaService.verifyExistentCategory(categoryName)
-        ),
-        map((categoryExists) =>
-          (categoryExists ? { existentCategory: true } : null),
-        ),
-        first()
-      );
+  categoryExists(id?: any){
+
+    if(id != undefined){
+      return (control: AbstractControl) => {
+        return control.valueChanges.pipe(
+          switchMap((categoryName) =>
+            this.categoriaService.verifyExistentCategoryEditForm(id, categoryName)
+          ),
+          map((categoryExists) =>
+            (categoryExists ? { existentCategory: true } : null),
+          ),
+          first()
+        );
+      }
+    } else{
+      return (control: AbstractControl) => {
+        return control.valueChanges.pipe(
+          switchMap((categoryName) =>
+            this.categoriaService.verifyExistentCategory(categoryName)
+          ),
+          map((categoryExists) =>
+            (categoryExists ? { existentCategory: true } : null),
+          ),
+          first()
+        );
+      }
     }
+
   }
 
 }

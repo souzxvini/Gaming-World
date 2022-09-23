@@ -1,3 +1,4 @@
+import { GameExistsValidationService } from './../../service/game/game-exists-validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/model/categoria.model';
@@ -23,31 +24,34 @@ export class GameEditFormDialogComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private gameService: GameService,
+    private gameExistsValidationService: GameExistsValidationService,
     public dialogRef: MatDialogRef<GameEditFormDialogComponent>,
     private categoriaService: CategoriaService) {
 
-      this.form = this.fb.group({
-        nome: [null, [Validators.required]],
-        descricao: [null, [Validators.required]],
-        nomeCategoria: [null, [Validators.required]],
-        preco: [null, [Validators.required]],
-        anoLancamento: [null, [Validators.required]],
-        empresa: [null, [Validators.required]],
-        urlImagem: [null, [Validators.required]]
-      },
-      {
-        validators:[usuarioSenhaIguaisValidator]
-      })
-
-      this.form.get('nome').disable()
     }
 
   ngOnInit(): void {
+    console.log(this.id)
+    this.form = this.fb.group({
+      nome: [null, [Validators.required], [this.gameExistsValidationService.gameExists(this.id)]],
+      descricao: [null, [Validators.required]],
+      nomeCategoria: [null, [Validators.required]],
+      preco: [null, [Validators.required]],
+      anoLancamento: [null, [Validators.required]],
+      empresa: [null, [Validators.required]],
+      urlImagem: [null, [Validators.required]]
+    },
+    {
+      validators:[usuarioSenhaIguaisValidator]
+    })
+
     this.getCategorias();
     this.buscarGame();
   }
 
+
   getCategorias(){
+    console.log(this.id)
     this.categoriaService.getCategoriasNoPagination().subscribe(data => {
       this.categorias = data.content;
     })

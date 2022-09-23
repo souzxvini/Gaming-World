@@ -62,8 +62,9 @@ export class GameService {
 
   public verifyExistentGameEditForm(id: number, nome: string): Observable<ResponsePageable>{
     var nomeJogo = nome.toUpperCase();
-    return this.http.get<ResponsePageable>( `${this.url}/${id}/edit/exists?nome=${nomeJogo}`);
+    return this.http.get<ResponsePageable>( `${this.url}/edit/exists?nome=${nomeJogo}&id=${id}`);
   }
+
 
 
 }

@@ -12,8 +12,21 @@ export class GameExistsValidationService {
   constructor(private http: HttpClient,
     private gameService: GameService) { }
 
-  gameExists(){
-    return (control: AbstractControl) => {
+  gameExists(id?: any){
+    if(id != undefined){
+      return (control: AbstractControl) => {
+        return control.valueChanges.pipe(
+          switchMap((gameName) =>
+            this.gameService.verifyExistentGameEditForm(id, gameName)
+          ),
+          map((gameExists) =>
+            (gameExists ? { existentGame: true } : null),
+          ),
+          first()
+        );
+      }
+    } else{
+      return (control: AbstractControl) => {
       return control.valueChanges.pipe(
         switchMap((gameName) =>
           this.gameService.verifyExistentGame(gameName)
@@ -24,6 +37,8 @@ export class GameExistsValidationService {
         first()
       );
     }
+    }
+
   }
 
 }

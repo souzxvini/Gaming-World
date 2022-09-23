@@ -1,3 +1,4 @@
+import { CategoriaExistsValidationService } from './../../service/game/categoria-exists-validation.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/model/categoria.model';
@@ -22,14 +23,15 @@ export class CategoriaEditFormDialogComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<CategoriaEditFormDialogComponent>,
-    private categoriaService: CategoriaService) {
+    private categoriaService: CategoriaService,
+    private categoriaExistsValidationService: CategoriaExistsValidationService) {
 
-    this.form = this.fb.group({
-      nome: [null, [Validators.required]]
-    })
   }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      nome: [null, [Validators.required], [this.categoriaExistsValidationService.categoryExists(this.id)]]
+    })
     this.buscarCategoria();
   }
 
@@ -74,6 +76,8 @@ export class CategoriaEditFormDialogComponent implements OnInit {
             'The category name has been updated.',
             'success'
           )
+        },(error) => {
+          alert(error)
         })
 
       }

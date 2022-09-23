@@ -19,7 +19,6 @@ export class GameFormDialogComponent implements OnInit {
 
   public form: FormGroup
 
-
   categorias: Categoria[];
   categoriaSelecionada: string;
   manterLista: boolean = true;
@@ -77,7 +76,6 @@ export class GameFormDialogComponent implements OnInit {
 
     Swal.fire({
       title: 'Are you sure you want to add "' + game.nome +'"?',
-      text: "You won't be able to change this game's name later, only the others informations!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
