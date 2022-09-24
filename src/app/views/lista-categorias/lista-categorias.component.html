@@ -22,15 +22,15 @@
             </div>
 
           </mat-card>
-          <div>
             <div class="row">
-              <div class="col-4 mb-3" *ngFor="let categoria of categoriasList">
+              <ng-container  *ngFor="let categoria of categoriasList">
+                <div class="col-6 col-sm-6 col-md-4 col-xl-3 mb-3">
                   <div class="card-text text-center">
                     {{ categoria.nome }}
-                   </div>
+                  </div>
                    <div class="card-button">
                       <button mat-icon-button>
-                        <mat-icon color="primary"  (click)="atualizarCategoria(categoria.id)">mode_edit</mat-icon>
+                        <mat-icon   (click)="atualizarCategoria(categoria.id)">mode_edit</mat-icon>
                       </button>
                       <button mat-icon-button color="warn">
                         <mat-icon (click)="excluirCategoria(categoria)">delete</mat-icon>
@@ -38,13 +38,14 @@
                     </div>
                   <div>
                   </div>
-              </div>
+                  </div>
+              </ng-container>
               <div class="texto-vazio text-center" *ngIf="categoriasList.length == 0">
                 <p >Sorry, there's no category registered :(</p>
               </div>
             </div>
-          </div>
-      </div>
+
+                </div>
       <mat-paginator [length]="totalElements"
             [pageSize]="pageSize"
             aria-label="Select page"

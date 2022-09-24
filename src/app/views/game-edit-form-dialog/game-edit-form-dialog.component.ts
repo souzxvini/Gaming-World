@@ -33,7 +33,7 @@ export class GameEditFormDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.id)
     this.form = this.fb.group({
-      nome: [null, [Validators.required], [this.gameExistsValidationService.gameExists(this.id)]],
+      nome: [null, [Validators.required]],
       descricao: [null, [Validators.required]],
       nomeCategoria: [null, [Validators.required]],
       preco: [null, [Validators.required]],
@@ -92,6 +92,8 @@ export class GameEditFormDialogComponent implements OnInit {
     game.empresa = this.form.get('empresa').value
     game.preco = this.form.get('preco').value
     game.urlImagem = this.form.get('urlImagem').value
+
+    console.log(game)
 
     Swal.fire({
       title: 'Are you sure you want to update this game?',

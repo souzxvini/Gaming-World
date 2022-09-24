@@ -26,7 +26,6 @@ export class GameDetailsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGame();
-    console.log(this.game + "ewofvneru9bvnr9eubnv9eron")
   }
 
   cancel(): void{
