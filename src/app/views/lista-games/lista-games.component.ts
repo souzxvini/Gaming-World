@@ -150,7 +150,6 @@ export class ListaGamesComponent implements OnInit {
     this.page = 0
     const target = e.target as HTMLInputElement;
     const value = target.value
-    console.log(value)
 
     if(this.categoriaSelecionada == 'ALL'){
       this.getGamesByString(value, this.page, this.pageSize);

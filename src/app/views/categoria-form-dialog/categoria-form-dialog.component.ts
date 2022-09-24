@@ -54,7 +54,6 @@ export class CategoriaFormDialogComponent implements OnInit {
             toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
         })
-
         Toast.fire({
           icon: 'success',
           title: 'Category "' + categoria.nome + '" added successfully!'
