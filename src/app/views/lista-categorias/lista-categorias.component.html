@@ -5,40 +5,46 @@
         <div>
           <mat-card class="mb-3">
             <div>
-              <mat-form-field>
-              <mat-label><mat-icon>search</mat-icon>Search By Name </mat-label>
-                <input class="text-uppercase" matInput type="text" [(ngModel)]="searchInputText" (keyup)="forEachTypedCharacter($event)" >
-                <button *ngIf="searchInputText" matSuffix mat-icon-button aria-label="Clear" (click)="limparFiltro()">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-              <button style="float: right;" class="botao-adicionar" mat-raised-button (click)="adicionarCategoria()" > <mat-icon>add</mat-icon>New Category</button>
+              <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label><mat-icon>search</mat-icon>Search By Name </mat-label>
+                    <input class="text-uppercase" matInput type="text" [(ngModel)]="searchInputText" (keyup)="forEachTypedCharacter($event)" >
+                    <button *ngIf="searchInputText" matSuffix mat-icon-button aria-label="Clear" (click)="limparFiltro()">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-6 col-md-4">
+                  <button  class="botao-adicionar" mat-raised-button (click)="adicionarCategoria()" > <mat-icon>add</mat-icon>New Category</button>
+                </div>
+              </div>
             </div>
 
           </mat-card>
-
-          <div class="row">
-            <ng-container *ngFor="let categoria of categoriasList">
-              <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-3">
-                <mat-card >
-                  <h3 class="card-text-overflow">{{ categoria.nome }}</h3>
-                  <mat-card-actions align="end">
-                    <button mat-icon-button>
-                        <mat-icon color="primary" (click)="atualizarCategoria(categoria.id)">mode_edit</mat-icon>
-                    </button>
-                    <button mat-icon-button color="warn">
-                          <mat-icon (click)="excluirCategoria(categoria)">delete</mat-icon>
-                    </button>
-                </mat-card-actions>
-                </mat-card>
+          <div>
+            <div class="row">
+              <div class="col-3 mb-3" *ngFor="let categoria of categoriasList">
+                  <div class="card-text text-center">
+                    {{ categoria.nome }}
+                   </div>
+                   <div class="card-button">
+                      <button mat-icon-button>
+                        <mat-icon color="primary"  (click)="atualizarCategoria(categoria.id)">mode_edit</mat-icon>
+                      </button>
+                      <button mat-icon-button color="warn">
+                        <mat-icon (click)="excluirCategoria(categoria)">delete</mat-icon>
+                      </button>
+                    </div>
+                  <div>
+                  </div>
               </div>
-            </ng-container>
-            <div class="texto-vazio text-center" *ngIf="categoriasList.length == 0">
-              <p >Sorry, there's no category registered :(</p>
+              <div class="texto-vazio text-center" *ngIf="categoriasList.length == 0">
+                <p >Sorry, there's no category registered :(</p>
+              </div>
             </div>
           </div>
       </div>
-
       <mat-paginator [length]="totalElements"
             [pageSize]="pageSize"
             aria-label="Select page"
