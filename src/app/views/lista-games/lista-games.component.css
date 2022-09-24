@@ -14,15 +14,8 @@ a {
 
 }
 
-
 .subtittle-card{
   color: rgb(145, 138, 138);
-  margin: 0;
-  padding-left: 15px;
-}
-
-.subtittle-card-price{
-  color: green;
   margin: 0;
   padding-left: 15px;
   padding-bottom: 10px;
@@ -31,6 +24,7 @@ a {
 .botao-adicionar{
   color:white;
   background-color: rgb(64, 165, 106);
+    width: 100%!important;
 }
 
 .botao-adicionar:hover{
@@ -98,14 +92,6 @@ a {
   color: white;
   background-color: #57140b;
 }
-.card-jogos .subtittle-card-price {
-  transition: 0.3s ease-out;
-}
-
-.card-jogos:hover .subtittle-card-price {
-  color: rgb(0, 197, 16);
-}
-
 .card-jogos img{
   transition: 0.3s ease-out;
 }
@@ -114,6 +100,11 @@ a {
   cursor: pointer;
   filter: brightness(1.2);
 }
+
+.example-full-width{
+  width: 100%;
+}
+
 
 
 

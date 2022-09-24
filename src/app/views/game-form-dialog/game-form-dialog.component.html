@@ -1,54 +1,54 @@
 
-<h1 mat-dialog-title>Adicionar Novo Game</h1>
+<h1 mat-dialog-title>Add New Game</h1>
 <div mat-dialog-content>
   <form [formGroup]="form">
     <app-mensagem
       *ngIf="form.errors?.['nomeJogoIgualNomeEmpresa']"
-      mensagem="O nome do jogo não pode ser igual ao nome da empresa! ">
+      mensagem="The game's name can't be the same as the company's name! ">
       </app-mensagem>
       <app-mensagem
       *ngIf="form.get('nome')?.errors?.['existentGame']"
       mensagem="This game already exists!"
       ></app-mensagem>
     <mat-form-field class="example-full-width">
-      <mat-label >Nome</mat-label>
+      <mat-label >Name</mat-label>
       <input matInput formControlName="nome" class="text-uppercase"  oninput="this.value = this.value.toUpperCase()">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-label >Categoria</mat-label>
+      <mat-label >Category</mat-label>
       <mat-select  formControlName="nomeCategoria">
-        <mat-option disabled>Escolha uma categoria</mat-option>
+        <mat-option disabled>Select a category</mat-option>
         <mat-option *ngFor="let categoria of categorias" [value]="categoria.nome">{{categoria.nome}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" >
-      <mat-label>Descrição</mat-label>
+      <mat-label>Description</mat-label>
       <textarea matInput formControlName="descricao" rows="6"></textarea>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-label >Ano do Lançamento</mat-label>
+      <mat-label >Release Year</mat-label>
       <input matInput formControlName="anoLancamento" >
     </mat-form-field>
 
     <app-mensagem
       *ngIf="form.errors?.['nomeJogoIgualNomeEmpresa']"
-      mensagem="O nome da empresa não pode ser igual ao nome do jogo! ">
+      mensagem="The game's name can't be the same as the company's name! ">
       </app-mensagem>
     <mat-form-field class="example-full-width">
-      <mat-label >Nome da Empresa</mat-label>
+      <mat-label >Company</mat-label>
       <input matInput oninput="this.value = this.value.toUpperCase()" formControlName="empresa">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-label >Preço</mat-label>
+      <mat-label >Price</mat-label>
       <input matInput formControlName="preco" type="number" >
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <mat-label >Url da Imagem</mat-label>
+      <mat-label >Image URL</mat-label>
       <input matInput formControlName="urlImagem" >
     </mat-form-field>
 

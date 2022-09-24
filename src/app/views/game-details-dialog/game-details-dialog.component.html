@@ -8,35 +8,35 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="example-full-width">
-            <mat-label >Categoria</mat-label>
+            <mat-label >Category</mat-label>
             <input matInput value="{{ game.categoria.nome }}" readonly="">
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field class="example-full-width">
-            <mat-label >Ano do lançamento</mat-label>
+            <mat-label >Release Year</mat-label>
             <input matInput value="{{ game.anoLancamento}}" readonly="">
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field class="example-full-width">
-            <mat-label >Empresa</mat-label>
+            <mat-label >Company</mat-label>
             <input matInput value="{{ game.empresa }}" readonly="" >
           </mat-form-field>
         </div>
 
         <div class="col-6">
           <mat-form-field class="example-full-width">
-            <mat-label >Preço</mat-label>
+            <mat-label >Price</mat-label>
             <input matInput value="{{ game.preco | currency: 'BRL'  }}" readonly="">
           </mat-form-field>
         </div>
 
         <div class="col-12">
           <mat-form-field class="example-full-width">
-            <mat-label >Descrição</mat-label>
+            <mat-label >Description</mat-label>
             <textarea matInput value="{{ game.descricao }}" rows="6"  readonly=""></textarea>
           </mat-form-field>
         </div>

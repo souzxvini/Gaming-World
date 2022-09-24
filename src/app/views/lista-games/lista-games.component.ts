@@ -21,7 +21,7 @@ export class ListaGamesComponent implements OnInit {
   gamesList: Game[] = new Array<Game>();
   categoriasList: Categoria[] = new Array<Categoria>();
   totalElements: number = 0
-  pageSize: number = 24;
+  pageSize: number = 12;
   page: number = 0;
   selected = 'ALL'
   categoriaSelecionada: string;
