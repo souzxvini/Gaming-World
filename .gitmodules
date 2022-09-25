@@ -1,3 +1,3 @@
-[submodule "dist"]
-    path = dist
+[submodule "Gaming-World"]
+    path = Gaming-World
     url = git://github.com/souzxvini/Gaming-World.git
