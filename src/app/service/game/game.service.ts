@@ -9,7 +9,7 @@ import { Game } from 'src/app/model/game.model';
 })
 export class GameService {
 
-  url = 'http://localhost:8080/jogos'
+  url = 'https://gaming-world-api.herokuapp.com/jogos'
 
   httpOptions = {
     headers: new HttpHeaders({

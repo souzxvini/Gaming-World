@@ -1,7 +1,6 @@
 .mat-card-grande{
   background-image: radial-gradient(circle,
    #5c1313, #601414, #641515, #681616, #6c1717, #6e1817, #701818, #721918, #731918, #741a19, #751a19, #761a1a);
-
 }
 
 .botao-adicionar{
@@ -22,11 +21,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   background: white;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 25px;
+  font-weight: 500;
   padding: 18px 18px;
   border-radius:  8px 8px 0 0;
-  letter-spacing:  1px;
 }
 
 .card-button {
@@ -36,7 +34,6 @@
   width: 100%;
   background-color: #1F487E;
   color: #fff;
-
   border-radius: 0 0 8px 8px;
 }
 

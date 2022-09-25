@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoriaService {
 
-  url = 'http://localhost:8080/categorias'
+  url = 'https://gaming-world-api.herokuapp.com/categorias'
 
   httpOptions = {
     headers: new HttpHeaders({
