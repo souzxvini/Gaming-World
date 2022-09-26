@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="example-full-width">
-            <mat-label >Category Name</mat-label>
+            <mat-label >Category</mat-label>
             <input matInput value="{{ game.categoria.nome }}" readonly="">
           </mat-form-field>
         </div>
@@ -30,8 +30,7 @@
         <div class="col-6">
           <mat-form-field class="example-full-width">
             <mat-label >Price</mat-label>
-            <input *ngIf="game.preco == 0" matInput value="Free" readonly="">
-            <input *ngIf="game.preco > 0" matInput value="{{ game.preco | currency: 'BRL'  }}" readonly="">
+            <input matInput value="{{ game.preco | currency: 'BRL'  }}" readonly="">
           </mat-form-field>
         </div>
 
