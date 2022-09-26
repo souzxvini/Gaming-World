@@ -30,7 +30,7 @@
         <div class="col-6">
           <mat-form-field class="example-full-width">
             <mat-label >Price</mat-label>
-            <input *ngIf="game.preco == 0" matInput value="{{ game.preco | currency: 'BRL'  }}" readonly="">
+            <input *ngIf="game.preco == 0" matInput value="Free" readonly="">
             <input *ngIf="game.preco > 0" matInput value="{{ game.preco | currency: 'BRL'  }}" readonly="">
           </mat-form-field>
         </div>
