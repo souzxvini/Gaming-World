@@ -16,5 +16,13 @@ O aplicativo está 100% responsivo para computador e mobile.
 O deploy do front-end foi realizado no Firebase e o da API foi feito no Heroku.
 
 Acesse o app: https://gamingworld2022.web.app/games
+<div align="center">
+  
+  # Computador
+  <img src="https://user-images.githubusercontent.com/92813829/192581005-4f79cc62-a310-495a-89c6-edbe6ff4af96.PNG"/>
+  
+  # Mobile
+  <img src="https://user-images.githubusercontent.com/92813829/192580727-9f7477be-05a1-47e8-a697-41253327f0b0.PNG"/>
+ </div>
 
 
