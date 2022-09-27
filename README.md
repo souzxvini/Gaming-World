@@ -1,4 +1,4 @@
-# Gaming House
+# Gaming World
 
 Esse projeto foi desenvolvido utilizando Angular 14 e está consumindo uma API Rest desenvolvida em Java/Springboot.
 
