@@ -20,7 +20,7 @@ export class CategoriaService {
   constructor(private http: HttpClient) { }
 
   public getCategorias(page: number, pageSize: number): Observable<ResponsePageable>{
-    return this.http.get<ResponsePageable>(`${this.url}?page=${page}&size=${pageSize}`);
+    return this.http.get<ResponsePageable>(`${this.url}?page=${page}&size=${pageSize}&sort=nome`);
   }
 
   public getCategoriasNoPagination(): Observable<any>{

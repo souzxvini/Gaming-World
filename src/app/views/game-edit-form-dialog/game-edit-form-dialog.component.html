@@ -48,6 +48,10 @@
       <input matInput formControlName="preco" type="number">
     </mat-form-field>
 
+    <app-mensagem *ngIf="form.get('urlImagem')?.errors?.['maxlength'] &&
+    form.get('urlImagem')?.touched"
+    mensagem="Url is too big!!">
+    </app-mensagem>
     <mat-form-field class="example-full-width">
       <mat-label >Image URL</mat-label>
       <input matInput formControlName="urlImagem" >
