@@ -9,7 +9,7 @@ O objetivo do projeto foi colocar em prática o consumo de uma API Rest (também
 Foram implementadas algumas validações bem interessantes nos formulários de criação e edição de jogo/categoria, como: 
 - Todos os campos devem estar preenchidos para que o botão de adicionar fique ativado;
 - Os campos 'name' e 'company', não podem ter o mesmo nome;
-- O campo 'name' não pode ter o mesmo de algum jogo/categoria ja existente.
+- O campo 'name' não pode ser o mesmo de algum jogo/categoria ja existente.
 
 O aplicativo está 100% responsivo para computador e mobile.
 
