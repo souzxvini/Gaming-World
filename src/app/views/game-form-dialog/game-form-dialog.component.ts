@@ -41,7 +41,7 @@ export class GameFormDialogComponent implements OnInit {
       preco: [null, [Validators.required]],
       anoLancamento: [null, [Validators.required]],
       empresa: [null, [Validators.required]],
-      urlImagem: [null, [Validators.required]],
+      urlImagem: [null, [Validators.required, Validators.maxLength(3000)]],
     },
     {
       validators:[usuarioSenhaIguaisValidator]
