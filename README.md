@@ -1,27 +1,20 @@
-# GamingHouse
+# Gaming House
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+Esse projeto foi desenvolvido utilizando Angular 14 e está consumindo uma API Rest desenvolvida em Java/Springboot.
 
-## Development server
+Foi utilizado também a biblioteca 'SweetAlert2' para personalizar os alertas da aplicação.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O objetivo do projeto foi colocar em prática o consumo de uma API Rest (também desenvolvida por mim) com Angular e aprender mais sobre alguns conceitos do Angular, como: Formulário Reativo, Rotas, Componentes, Property Binding.
 
-## Code scaffolding
+Foram implementadas algumas validações bem interessantes nos formulários de criação e edição de jogo/categoria, como: 
+- Todos os campos devem estar preenchidos para que o botão de adicionar fique ativado;
+- Os campos 'name' e 'company', não podem ter o mesmo nome;
+- O campo 'name' não pode ter o mesmo de algum jogo/categoria ja existente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+O aplicativo está 100% responsivo para computador e mobile.
 
-## Build
+O deploy do front-end foi realizado no Firebase e o da API foi feito no Heroku.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Acesse o app: https://gamingworld2022.web.app/games
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
